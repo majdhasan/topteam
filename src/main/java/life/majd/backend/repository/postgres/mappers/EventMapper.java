@@ -7,8 +7,8 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface EventMapper {
 
-  EventEntity eventEntityToModel(Event event);
+  Event eventEntityToModel(EventEntity event);
 
-  Event eventModelToEntity(EventEntity event);
+  EventEntity eventModelToEntity(Event event);
 
 }
