@@ -52,7 +52,7 @@ public class EventEntity {
   private String eventType;
 
   @Column(name = "team_size", nullable = false)
-  private String teamSize;
+  private int teamSize;
 
   @Column(name = "event_status", nullable = false)
   private String eventStatus;
@@ -62,4 +62,7 @@ public class EventEntity {
 
   @ManyToMany
   private Set<PersonEntity> team2;
+
+  @Column(name = "cancellation_deadline")
+  private int cancellationDeadline;
 }

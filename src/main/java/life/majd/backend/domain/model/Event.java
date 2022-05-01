@@ -17,7 +17,7 @@ public class Event {
   private LocalDateTime createdAt;
   private LocalDateTime startsAt;
   private EventLocation location;
-  private TeamSize teamSize;
+  private int teamSize;
   private Set<Person> team1;
   private Set<Person> team2;
 
@@ -53,11 +53,11 @@ public class Event {
     this.location = location;
   }
 
-  public TeamSize getTeamSize() {
+  public int getTeamSize() {
     return teamSize;
   }
 
-  public void setTeamSize(TeamSize teamSize) {
+  public void setTeamSize(int teamSize) {
     this.teamSize = teamSize;
   }
 
