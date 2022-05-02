@@ -1,15 +1,14 @@
 package life.majd.backend.domain.service;
 
-import life.majd.backend.domain.model.Event;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import life.majd.backend.domain.model.EventLocation;
 import life.majd.backend.domain.model.Person;
 import life.majd.backend.repository.postgres.EventLocationRepository;
 import life.majd.backend.repository.postgres.EventRepository;
 import life.majd.backend.repository.postgres.entity.EventLocationEntity;
 import life.majd.backend.repository.postgres.mappers.EventLocationMapper;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +17,7 @@ import org.springframework.stereotype.Service;
 public class LocationServiceImpl implements LocationService {
 
   private EventLocationRepository eventLocationRepository;
-
   private EventRepository eventRepository;
-
   private EventLocationMapper eventLocationMapper;
 
   @Override
@@ -41,15 +38,6 @@ public class LocationServiceImpl implements LocationService {
     Optional<EventLocationEntity> locationEntity = eventLocationRepository.findById(id);
     return locationEntity.map(location -> eventLocationMapper.EventLocationEntityToModel(location));
   }
-
-  @Override
-  public Optional<EventLocation> getEventLocation(Event event) {
-//    Optional<EventEntity> eventEntity = eventRepository.findOne();
-//    return eventEntity.map(
-//        entity -> eventLocationMapper.EventLocationEntityToModel(entity.getLocation()));
-    return Optional.empty();
-  }
-
 
   @Override
   public Set<EventLocation> getEventLocations(Person person) {

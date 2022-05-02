@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 public class EventServiceImpl implements EventService {
 
   private EventRepository eventRepository;
-
   private EventLocationRepository eventLocationRepository;
   private EventMapper eventMapper;
   private PersonMapper personMapper;
@@ -34,7 +33,7 @@ public class EventServiceImpl implements EventService {
 
   @Override
   public Set<Event> getEvents(SearchArea searchArea) {
-
+    // TODO
     return null;
   }
 
@@ -55,24 +54,22 @@ public class EventServiceImpl implements EventService {
   }
 
   @Override
-  public Set<Event> getEvents(Person person) {
+  public Set<Event> getEvents(Person organiser) {
     Set<Event> events = new HashSet<>();
     Optional<PersonEntity> personEntity = personRepository.findById(
-        person.getId());
+        organiser.getId());
     if (personEntity.isPresent()) {
       Set<EventEntity> eventEntitiesByOrganizer = eventRepository.findEventEntitiesByOrganizer(
           personEntity.get());
       events = eventEntitiesByOrganizer.stream()
           .map(eventEntity -> eventMapper.eventEntityToModel(eventEntity)).collect(
               Collectors.toSet());
-
     }
     return events;
   }
 
   @Override
   public void createEvent(Event event) {
-
     EventEntity eventEntity = eventMapper.eventModelToEntity(event);
     eventRepository.save(eventEntity);
   }
@@ -80,11 +77,7 @@ public class EventServiceImpl implements EventService {
   @Override
   public void deleteEvent(Event event) {
     Optional<EventEntity> eventEntity = eventRepository.findById(event.getId());
-    eventEntity.ifPresent(entity -> {
-      eventRepository.delete(entity);
-//      log.info("{} has been deleted", eventEntity.get().getId());
-    });
-
+    eventEntity.ifPresent(entity -> eventRepository.delete(entity));
   }
 
   @Override
